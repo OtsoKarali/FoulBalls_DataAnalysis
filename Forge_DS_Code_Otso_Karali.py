@@ -1,13 +1,4 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# 
-
 # # Importing Data Set and Cleaning Data
-
-# In[81]:
-
-
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -33,9 +24,6 @@ FilteredFoulsData = FilteredFoulsData.groupby('type_of_hit').apply(remove_outlie
 
 # # Pie Chart of zone predictions
 
-# In[74]:
-
-
 # Count the occurrences of each category in predicted_zone
 predicted_zone_counts = FilteredFoulsData['predicted_zone'].value_counts()
 
@@ -47,9 +35,6 @@ plt.show()
 
 
 # # Console Print of number of times prediction was correct
-
-# In[75]:
-
 
 # Calculate the number of times the prediction was correct
 correct_predictions = (FilteredFoulsData['predicted_zone'] == FilteredFoulsData['camera_zone']).sum()
@@ -69,11 +54,7 @@ print(f"Correct Predictions: {correct_predictions}")
 print(f"Incorrect Predictions: {incorrect_predictions}")
 print(f"Percentage of Correct Predictions: {percentage_correct:.2f}%")
 
-
 # # Violin plot of data
-
-# In[76]:
-
 
 # Violin plot
 plt.figure(figsize=(12, 8))
@@ -85,9 +66,6 @@ plt.show()
 
 
 # # Print Base Statistics
-
-# In[77]:
-
 
 # Calculate mean
 mean_exit_velocity = FilteredFoulsData['exit_velocity'].mean()
@@ -114,9 +92,6 @@ print(f"Standard deviation of exit velocity: {std_dev_exit_velocity:.2f} mph")
 
 # # Bell Curve
 
-# In[78]:
-
-
 # Plot the distribution of exit velocities with a bell curve
 plt.figure(figsize=(12, 6))
 sns.histplot(FilteredFoulsData['exit_velocity'], kde=True, bins=20) 
@@ -127,9 +102,6 @@ plt.show()
 
 
 # # Bar Plot
-
-# In[79]:
-
 
 # Whitegrid graph style
 sns.set_style("whitegrid")
@@ -164,9 +136,6 @@ plt.show()
 
 
 # # Confidence Interval per Type of Hit
-
-# In[80]:
-
 
 # Function to calculate the confidence interval for the mean exit velocity
 def mean_confidence_interval(data, confidence=0.95):
