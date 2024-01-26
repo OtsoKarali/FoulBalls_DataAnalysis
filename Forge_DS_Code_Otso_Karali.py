@@ -156,7 +156,6 @@ for hit_type in FilteredFoulsData['type_of_hit'].unique():
         '95% CI Upper': upper_bound
     }
 
-# Convert the dictionary to a DataFrame
+# Convert the dictionary to a DataFrame for better visualization
 ci_df = pd.DataFrame(ci_dict).T
 ci_df
-
