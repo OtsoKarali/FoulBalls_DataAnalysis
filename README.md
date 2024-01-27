@@ -1,1 +1,1 @@
-# Code made in relation to FORGE Data Science accelerator january 2024 challenge 
+# Code made in relation to the forge summer 2024 launch program
