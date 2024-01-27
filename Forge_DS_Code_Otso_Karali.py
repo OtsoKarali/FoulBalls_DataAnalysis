@@ -134,9 +134,9 @@ plt.ylabel('Average Exit Velocity (mph)')
 plt.xticks(rotation=45)  # Rotates the labels on the x-axis for better readability
 plt.show()
 
-
+import pandas as pd
+import scipy.stats as stats
 # # Confidence Interval per Type of Hit
-
 # Function to calculate the confidence interval for the mean exit velocity
 def mean_confidence_interval(data, confidence=0.95):
     n = len(data)
