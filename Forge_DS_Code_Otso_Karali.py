@@ -159,3 +159,42 @@ for hit_type in FilteredFoulsData['type_of_hit'].unique():
 # Convert the dictionary to a DataFrame for better visualization
 ci_df = pd.DataFrame(ci_dict).T
 ci_df
+
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+from sklearn.preprocessing import OneHotEncoder
+from sklearn.compose import ColumnTransformer
+
+# One-hot encode categorical variables
+categorical_features = ['type_of_hit', 'camera_zone']
+one_hot = OneHotEncoder()
+one_hot.fit(FilteredFoulsData[categorical_features])
+transformed_X = one_hot.transform(FilteredFoulsData[categorical_features])
+
+# Get feature names for one-hot encoded columns
+feature_names = one_hot.get_feature_names_out(categorical_features)
+
+# Prepare the target variable
+y = FilteredFoulsData['exit_velocity']
+
+# Split the data
+X_train, X_test, y_train, y_test = train_test_split(transformed_X, y, test_size=0.2, random_state=42)
+
+# Train the model
+model = LinearRegression()
+model.fit(X_train, y_train)
+
+# Get the model coefficients
+coefficients = model.coef_
+
+# Plotting
+plt.figure(figsize=(10, 6))
+plt.bar(feature_names, coefficients)
+plt.xticks(rotation=45)
+plt.title('Linear Regression Coefficients')
+plt.xlabel('Features')
+plt.ylabel('Coefficient Value')
+plt.show()
